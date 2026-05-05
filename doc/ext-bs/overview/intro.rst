@@ -16,7 +16,7 @@ About the |API| BS Extension
 -----------------------------
 
 This document defines an extension to the :cite-title: `PSA-CRYPT` specification, to provide support for :term:`Blind Signature` (BS) algorithms.
-Specifically, for commonly used schemes RSA and RSA-FDH.
+Specifically, for commonly used schemes RSA-FDH, Clause-Blind-Schnorr, Lattice-based and Elgamal.
 
 This specification must be read and implemented in conjunction with `[PSA-CRYPT]`.
 All of the conventions, design considerations, and implementation considerations that are described in `[PSA-CRYPT]` apply to this specification.
@@ -44,3 +44,20 @@ The RSA blind signature is defined in :rfc-title:`9474` as RSABSSA (RSA Blind Si
 
 PSS in this case stands for Probabilistic signature scheme, while PSSZERO defines the salt length of zero. RSA full domain hash (RSA-FDH) is mentioned as an additional variant.
 
+Clause-Blind-Schnorr
+^^^^^^^^^^^^^^^^^^^^
+
+In :cite-title:`CBS`, Fuchsbauer et al. proposed the Clause-Blind-Schnorr Scheme. For security reasons, the signer provides two commitments and the user computes two blinded messages from a single input message.
+At the final step, the signer has to choose randomly which one to sign and send the index long with the generated signature.
+
+Fair Fiat Shamir
+^^^^^^^^^^^^^^^^
+
+Stadler et al. proposed variations of the blind signature scheme, to allow third parties to link parts of the protocol together in order to trace back malicious users.
+The additional entity is referred to as judge. :cite-title:`FSS`
+
+Lattice BS
+^^^^^^^^^^
+
+Lattice based cryptography is known for being post-quantum resistant. Most lattice based blind signature schemes require intermediate checks and full protocol restart, which makes them difficult to integrate into a unified API.
+Bouaziz et al. solved this issue, by integrating granular checks in each step which avoid interruption of the protocol.:cite-title:`LAT`

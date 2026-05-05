@@ -22,6 +22,21 @@
  */
 #define PSA_ALG_RSABSSA_FDH
 
+/**
+ * @brief Clause blind schnorr blind signature algorithm.
+ */
+#define PSA_ALG_CBS
+
+/**
+ * @brief Fair fiat shamir blind signature algorithm.
+ */
+#define PSA_ALG_FFS
+
+/**
+ * @brief Lattice based blind signature algorithm.
+ */
+#define PSA_ALG_LATTICE
+
 typedef struct psa_blind_sign_ctx_t {
     psa_algorithm_t algo;
     uint8_t signer_pubrandom[??];

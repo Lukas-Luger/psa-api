@@ -26,5 +26,8 @@ This chapter is divided into sections for each of the BS algorithms in the |API|
 
     rsa
     rsa-fdh
+    cbs
+    ffs
+    lattice
 
 

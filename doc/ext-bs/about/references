@@ -6,6 +6,24 @@
     :doc_no: IHI 0086
     :url: arm-software.github.io/psa-api/crypto
 
+.. reference:: CBS
+    :title: Blind Schnorr Signatures and Signed ElGamal Encryption in the Algebraic Group Model
+    :author: Georg Fuchsbauer, Antoine Plouviez, and Yannick Seurin
+    :publication: 2020
+    :url: doi.org/10.1007/978-3-030-45724-2_3
+
+.. reference:: FFS
+    :title: Fair Blind Signatures
+    :author: Markus Stadlerl , Jean-Marc Piveteau, Jan Camenisch
+    :publication: 1995
+    :url: doi.org/10.1007/3-540-49264-X_17
+
+.. reference:: LAT
+    :title: Lattice-based (Partially) Blind Signature without Restart
+    :author: Samuel Bouaziz-Ermann, Sébastien Canard, Gautier Eberhart, Guillaume Kaim, Adeline Roux-Langlois, and Jacques Traoré 
+    :publication: 2020
+    :url: eprint.iacr.org/2020/260
+
 .. reference:: FIPS186-5
     :title: FIPS Publication 186-5: Digital Signature Standard (DSS)
     :author: NIST
