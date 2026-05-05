@@ -1,0 +1,93 @@
+.. SPDX-FileCopyrightText: Copyright 2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
+.. SPDX-License-Identifier: CC-BY-SA-4.0 AND LicenseRef-Patent-license
+
+.. term:: Algorithm
+
+    A finite sequence of steps to perform a particular operation.
+
+    In this specification, an algorithm is a :term:`cipher` or a related function.
+    Other texts call this a cryptographic mechanism.
+
+.. term:: Byte
+
+    In this specification, a unit of storage comprising eight bits, also called an octet.
+
+.. term:: API
+
+    Application Programming Interface.
+
+.. term:: Key identifier
+
+    A reference to a cryptographic key. Key identifiers in the |API| are 32-bit integers.
+
+.. term:: Key type
+
+    Key metadata that describes the structure and content of a key.
+
+.. term:: Key policy
+
+    Key metadata that describes and restricts what a key can be used for.
+
+.. term:: Lifetime
+
+    Key metadata that describes when a key is destroyed.
+
+.. scterm:: Implementation defined
+
+    Behavior that is not defined by the architecture, but is defined and documented by individual implementations.
+
+.. scterm:: Specification defined
+
+    Behavior that is defined by this specification.
+
+.. term:: Keystore
+
+    A hardware or software component that protects, stores, and manages cryptographic keys.
+
+.. term:: Cryptoprocessor
+
+    The component that performs cryptographic operations.
+    A cryptoprocessor might contain a :term:`keystore` and countermeasures against a range of physical and timing attacks.
+
+.. term:: Hash
+
+    A cryptographic hash function, or the value returned by such a function.
+
+.. term:: Signature
+
+    The output of a digital signature scheme that uses an :term:`asymmetric` keypair. Used to establish who produced a message.
+
+.. term:: Key size
+
+    The size of a key as defined by common conventions for each key type.
+    For keys that are built from several numbers of strings, this is the size of a particular one of these numbers or strings.
+
+    This specification expresses key sizes in bits.
+
+.. term:: PSA
+
+    Platform Security Architecture
+
+.. term:: Symmetric
+
+    A type of cryptographic algorithm that uses a single key. A symmetric key can be used with
+    a block cipher or a stream cipher.
+
+.. term:: Asymmetric
+
+    See :term:`Public-key cryptography`.
+
+.. term:: Public-key cryptography
+
+    A type of cryptographic system that uses key pairs. A keypair consists of a (secret) private key
+    and a public key (not secret). A public-key cryptographic algorithm can be used for key distribution
+    and for digital signatures.
+
+.. term:: Volatile key
+
+    A key that has a short lifespan and is guaranteed not to exist after a restart of an application instance.
+
+.. term:: Post-Quantum Cryptography
+    :abbr: PQC
+
+    A cryptographic scheme that relies on mathematical problems that do not have efficient algorithms for either classical or quantum computing.
