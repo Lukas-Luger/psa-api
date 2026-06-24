@@ -10,9 +10,9 @@ Blind signature API reference
 Functions
 ---------
 
-.. function:: psa_blind_sign_setup
+.. function:: psa_blindsig_user_setup
     .. summary::
-        Setting up a blind signature protocol.
+        Setting up user side blind signature protocol.
 
     .. param:: psa_blind_sign_ctx_t *sign_context
         Context for persistent values throughout the protocol.
@@ -32,12 +32,15 @@ Functions
 
     This function is used to initialize the sign context for later use.
 
-.. function:: psa_blind_sign_generate_commitment
+.. function:: psa_blindsig_signer_setup
     .. summary::
-        Generates public and private randoms.
+        Setting up server side blind signature protocol and generates public and private randoms.
 
     .. param:: psa_blind_sign_ctx_t *sign_context
         Context for persistent values throughout the protocol.
+
+    .. param:: psa_algorithm_t algorithm
+        Blind signature algorithm to use.
 
     .. param:: uint8_t *prandom
         Output public random value for user.
@@ -55,7 +58,7 @@ Functions
     .. retval:: PSA_ERROR_BUFFER_TOO_SMALL
         Provided buffer was too small.
 
-.. function:: psa_blind_sign_blind_message
+.. function:: psa_blindsig_blind_message
     .. summary::
         Blind a message for later signing.
 
@@ -92,9 +95,79 @@ Functions
         Blinding was successful bmesage_length will be the length of actual blinded message.
     .. retval:: PSA_ERROR_BUFFER_TOO_SMALL
         Provided buffer was too small.
+
+.. function:: psa_blindsig_blind_hash
+    .. summary::
+        Blind a hash for later signing.
+
+    .. param:: psa_blind_sign_ctx_t* sign_context
+        Context for persistent values throughout the protocol.
+
+    .. param:: psa_key_id_t key
+        Key id containing the public key from the signer.
+    
+    .. param:: uint8_t *hash
+        Hash to be blinded.
+
+    .. param:: size_t hash_len
+        Length of hash to be blinded.
+
+    .. param:: uint8_t *prandom
+        Optional signer public random.
+
+    .. param:: size_t prandom_len
+        Length of optional signer public random.
+
+    .. param:: uint8_t *bhash
+        Output blinded hash buffer.
+
+    .. param:: size_t bhash_size
+        Size of blinded hash buffer in bytes.
+
+    .. param:: size_t *bhash_length
+        On success, the number of bytes of the returned blinded hash.
+
+    .. return:: psa_status_t
+        Result status.
+    .. retval:: PSA_SUCCESS
+        Blinding was successful bhash_length will be the length of actual blinded hash.
+    .. retval:: PSA_ERROR_BUFFER_TOO_SMALL
+        Provided buffer was too small.
+
+.. function:: psa_blindsig_sign
+    .. summary::
+        Sign a blind message.
+    
+    .. param:: psa_blind_sign_ctx_t* sign_context
+        Context for persistent values throughout the protocol.
+    
+    .. param:: psa_key_id_t key
+        Private key for signer.
+
+    .. param:: uint8_t *bmessage
+        Input blind message or hash to sign.
+    
+    .. param:: size_t message_len
+        Length of blind message to be signed.
+
+    .. param:: uint8_t *bsignature
+        Output blind signature buffer.
+
+    .. param:: size_t bsignature_size
+        Size of blind signature buffer in bytes.
+
+    .. param:: size_t *bsignature_length
+        On success, the number of bytes of the returned blind signature.
+
+    .. return:: psa_status_t
+        Result status.
+    .. retval:: PSA_SUCCESS
+        Blinding was successful bsignature_length will be the length of actual blind signature.
+    .. retval:: PSA_ERROR_BUFFER_TOO_SMALL
+        Provided buffer was too small.
     
 
-.. function:: psa_blind_sign_unblind
+.. function:: psa_blindsig_unblind
     .. summary::
         Unblind a blinded signature.
 
@@ -150,17 +223,17 @@ Usage
 -----
 Function calls should be performed by two separate instances: the user (U) and the signer (S) in the following order:
 
-U+S: :code:`psa_blind_sign_setup`
+U: :code:`psa_blindsig_user_setup`
 
-S: :code:`psa_blind_sign_generate_commitment`
+S: :code:`psa_blindsig_signer_setup`
 
-U: :code:`psa_blind_sign_blind_message`
+U: :code:`psa_blindsig_blind_message` or :code:`psa_blindsig_blind_hash`
 
-S: :code:`psa_sign_message`
+S: :code:`psa_blindsig_sign`
 
-U: :code:`psa_blind_sign_unblind`
+U: :code:`psa_blindsig_unblind`
 
-U: :code:`psa_verify_message`
+U: :code:`psa_verify_message` or :code:`psa_verify_hash`
 
 .. note::
     The initialized context is not shared and is specific to an instance.
