@@ -37,12 +37,6 @@
  */
 #define PSA_ALG_LATTICE
 
-typedef struct psa_blind_sign_ctx_t {
-    psa_algorithm_t algo;
-    uint8_t signer_pubrandom[??];
-    uint8_t signer_privrandom[??];
-    uint8_t user_inverse[??];
-}psa_blind_sign_ctx_t;
 typedef struct {
     uint8_t inv[512];
     size_t inv_size;
